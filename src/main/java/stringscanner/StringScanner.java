@@ -13,7 +13,7 @@ public class StringScanner {
         Scanner scanner = new Scanner(intString);
         scanner.useDelimiter(delimiter);
 
-        while (scanner.hasNext()) {
+        while (scanner.hasNextInt()) {
             sumvalue += scanner.nextInt();
         }
         return sumvalue;

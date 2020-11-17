@@ -18,13 +18,6 @@ public class BankTransaction {
     public BankTransaction(long trxValue) {
         this.trxValue = trxValue;
 
-        if (currentMaxValue == 0) {
-            currentMaxValue = MIN_TRANS;
-        }
-        if (currentMinValue == 0) {
-            currentMinValue = MAX_TRANS;
-        }
-
         currentMinValue = trxValue < currentMinValue ? trxValue : currentMinValue;
         currentMaxValue = trxValue > currentMaxValue ? trxValue : currentMaxValue;
 
@@ -37,8 +30,8 @@ public class BankTransaction {
 
     public static void initTheDay() {
         transactions.clear();
-        currentMaxValue = 0;
-        currentMinValue = 0;
+        currentMaxValue = MIN_TRANS;
+        currentMinValue = MAX_TRANS;
     }
 
     public static BigDecimal averageOfTransaction() {
@@ -46,11 +39,11 @@ public class BankTransaction {
     }
 
     public static long getCurrentMinValue() {
-        return currentMinValue;
+        return transactions.size() > 0 ? currentMinValue : 0;
     }
 
     public static long getCurrentMaxValue() {
-        return currentMaxValue;
+        return transactions.size() > 0 ? currentMaxValue : 0;
     }
 
     public static BigDecimal getSumOfTrxs() {

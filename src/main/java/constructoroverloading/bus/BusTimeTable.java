@@ -31,4 +31,14 @@ public class BusTimeTable {
         }
         throw new IllegalStateException("No more buses today!");
     }
+
+    public SimpleTime firstbus() {
+        SimpleTime simpleTime = simpleTimeList.get(0);
+        for (SimpleTime item : simpleTimeList) {
+            if (simpleTime.difference(item) > 0) {
+                simpleTime = item;
+            }
+        }
+        return simpleTime;
+    }
 }

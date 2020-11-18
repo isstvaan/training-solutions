@@ -18,6 +18,13 @@ public class BusTimeTableTest {
             new SimpleTime(16, 15),
             new SimpleTime(18, 15)
     );
+    private static final List<SimpleTime> TIME_TABLE2 = Arrays.asList(
+            new SimpleTime(12, 45),
+            new SimpleTime(14, 15),
+            new SimpleTime(9, 15),
+            new SimpleTime(16, 15),
+            new SimpleTime(18, 15)
+    );
 
     @Test
     public void constructorTestList() {
@@ -56,5 +63,13 @@ public class BusTimeTableTest {
             timetable.nextBus(new SimpleTime(18, 16));
         });
         assertEquals("No more buses today!", ex.getMessage());
+    }
+
+    @Test
+    public void testFirstBus() {
+        //Given
+        BusTimeTable timetable = new BusTimeTable(TIME_TABLE2);
+        // When
+        assertEquals("9:15", timetable.firstbus().toString());
     }
 }

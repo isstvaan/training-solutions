@@ -2,18 +2,18 @@ package initializer;
 
 public class Rate {
     private Currency currency;
-    private double rate;
+    private double factor;
 
-    public Rate(Currency currency, double rate) {
+    public Rate(Currency currency, double factor) {
         this.currency = currency;
-        this.rate = rate;
+        this.factor = factor;
     }
 
     public Currency getCurrency() {
         return currency;
     }
 
-    public double getRate() {
-        return rate;
+    public double getFactor() {
+        return factor;
     }
 }

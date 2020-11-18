@@ -1,6 +1,5 @@
 package initializer;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class CreditCard {
 
     public CreditCard(long balance, Currency currency) {
         this.currency = currency;
-        this.balance = Math.round(balance * getConversionRate(currency));
+        this.balance = Math.round(balance * getConversionFactor(currency));
     }
 
     public CreditCard(long balance) {
@@ -33,7 +32,7 @@ public class CreditCard {
     }
 
     public boolean payment(long amount, Currency currency) {
-        long value = Math.round(amount * getConversionRate(currency));
+        long value = Math.round(amount * getConversionFactor(currency));
         if (value <= balance) {
             balance -= value;
             return true;
@@ -41,10 +40,10 @@ public class CreditCard {
         return false;
     }
 
-    private double getConversionRate(Currency currency) {
+    private double getConversionFactor(Currency currency) {
         for (Rate rate : RATES) {
             if (rate.getCurrency() == currency) {
-                return rate.getRate();
+                return rate.getFactor();
             }
         }
         return 1.0;

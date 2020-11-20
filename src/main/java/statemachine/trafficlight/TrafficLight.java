@@ -1,7 +1,5 @@
 package statemachine.trafficlight;
 
-import statemachine.seatheater.SeatHeaterState;
-
 public enum TrafficLight {
     RED {
         @Override

@@ -13,18 +13,20 @@ public class SeparatedSum {
         double sumNegative = 0;
         for (String item : splittedStr) {
 
-            double tmp = Double.parseDouble(item.replace(',', '.'));
-            if (tmp > 0) {
-                sumPositive += tmp;
-            } else if (tmp < 0) {
-                sumNegative += tmp;
+            try {
+                double tmp = Double.parseDouble(item.replace(',', '.'));
+
+                if (tmp > 0) {
+                    sumPositive += tmp;
+                } else if (tmp < 0) {
+                    sumNegative += tmp;
+                }
+            } catch (NumberFormatException ex) {
+                throw new IllegalStateException("Wrong number format");
             }
         }
 
         return new PositiveNegativeNumbers(sumPositive, sumNegative);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new SeparatedSum().sum("1,1;3,9;-1.9;-3.1;0"));
-    }
 }

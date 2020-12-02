@@ -76,6 +76,6 @@ public class DiaryTest {
         diary.newMark("Teszt Elek", 5);
         diary.newMark("Lapos Elemér", 2);
         diary.average();
-        assertEquals("Teszt Elek:5\nLapos Elemér:2\n3.5\n", Files.readString(filePath));
+        assertEquals("Teszt Elek:5\nLapos Elemér:2\naverage: 3.5\n", Files.readString(filePath));
     }
 }

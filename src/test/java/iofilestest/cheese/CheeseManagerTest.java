@@ -29,7 +29,7 @@ public class CheeseManagerTest {
 
     @Test
     public void testSaveToFile() throws IOException {
-        Path testFile = tmp.newFile("cheeses.txt").toPath();
+        Path testFile = tmp.newFile("cheeses.bin").toPath();
         List<Cheese> cheesesTest = new ArrayList<>();
         cheesesTest.add(new Cheese("Cheese1", 1));
         cheesesTest.add(new Cheese("Cheese2", 2));
@@ -45,7 +45,7 @@ public class CheeseManagerTest {
 
     @Test
     public void testFindCheese() throws IOException {
-        Path testFile = tmp.newFile("cheeses.txt").toPath();
+        Path testFile = tmp.newFile("cheeses.bin").toPath();
         Files.writeString(testFile, "Cheese1;1.0\n" +
                 "Cheese2;2.0\n" +
                 "Cheese3;3.0\n" +

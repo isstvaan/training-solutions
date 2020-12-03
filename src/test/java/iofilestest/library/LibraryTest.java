@@ -1,7 +1,5 @@
 package iofilestest.library;
 
-import iofilestest.library.Book;
-import iofilestest.library.Library;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;

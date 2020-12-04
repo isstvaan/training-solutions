@@ -15,7 +15,7 @@ public class ImageAssembler {
             throw new IllegalArgumentException("FilePath can't be null");
         }
 
-        try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(Files.newOutputStream(filePath))) {
+        try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(Files.newOutputStream(filePath.resolve("image.png")))) {
             for (byte[] item : imageRaw) {
                 bufferedOutputStream.write(item);
             }

@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class UrlManagerTest {
     @Test
@@ -47,14 +48,14 @@ public class UrlManagerTest {
 
     @Test
     public void testCreateMissingHost() {
-      //  Exception ex = assertThrows(IllegalArgumentException.class, () -> new UrlManager("http://"));
-       // assertEquals("Invalid url", ex.getMessage());
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> new UrlManager("http://"));
+        assertEquals("Invalid url", ex.getMessage());
     }
 
     @Test
     public void testCreateMissingProtocol() {
-      //  Exception ex = assertThrows(IllegalArgumentException.class, () -> new UrlManager("www.google.com"));
-      //  assertEquals("Invalid url", ex.getMessage());
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> new UrlManager("www.google.com"));
+        assertEquals("Invalid url", ex.getMessage());
     }
 
     @Test
@@ -89,7 +90,7 @@ public class UrlManagerTest {
         String url = "HTTPS://EarthQuake.USgs.gov/fdsnws/event/1/query?format=geojson&starttime=2014-01-01&endtime=2014-01-02";
         UrlManager urlManager = new UrlManager(url);
 
-//        assertThrows(IllegalArgumentException.class, () -> urlManager.hasProperty(null));
+        assertThrows(IllegalArgumentException.class, () -> urlManager.hasProperty(null));
 
     }
 
@@ -126,6 +127,6 @@ public class UrlManagerTest {
         String url = "HTTPS://EarthQuake.USgs.gov/fdsnws/event/1/query?format=geojson&starttime=2014-01-01&endtime=2014-01-02";
         UrlManager urlManager = new UrlManager(url);
 
-//        assertThrows(IllegalArgumentException.class, () -> urlManager.hasProperty("  "));
+        assertThrows(IllegalArgumentException.class, () -> urlManager.hasProperty("  "));
     }
 }

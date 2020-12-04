@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SchoolRecordsManager {
-    private List<Student> students = new ArrayList<>();
+    private final List<Student> students = new ArrayList<>();
 
     public void readGradesFromFile(String fileName) {
         if (fileName == null || fileName.isBlank()) {
             throw new IllegalArgumentException("File name can't be empty");
         }
 
-        try (BufferedReader bufferedReader = Files.newBufferedReader(Path.of("src/test/resources/" +fileName))) {
+        try (BufferedReader bufferedReader = Files.newBufferedReader(Path.of("src/main/resources/" +fileName))) {
             String line;
             while ((line = bufferedReader.readLine()) != null) {
                 students.add(getStudentFromStr(line));

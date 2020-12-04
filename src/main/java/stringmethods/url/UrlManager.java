@@ -13,11 +13,9 @@ package stringmethods.url;
     endtime = 2014-01-02
      */
 
-import java.util.SplittableRandom;
-
 public class UrlManager {
     private String protocol;
-    private int port;
+    private Integer port;
     private String host;
     private String path;
     private String query;
@@ -37,7 +35,7 @@ public class UrlManager {
 
     private String getProtocolFromURL(String url) {
         if (!parameterIsValid(url) || url.indexOf("://") < 0) {
-            throw new IllegalArgumentException("Invalid parameter");
+            throw new IllegalArgumentException("Invalid url");
         }
 
         return url.substring(0, url.indexOf("://")).toLowerCase();
@@ -45,7 +43,7 @@ public class UrlManager {
 
     public Integer getPortFromURL(String url) {
         if (!parameterIsValid(url)) {
-            throw new IllegalArgumentException("Invalid parameter");
+            throw new IllegalArgumentException("Invalid url");
         }
 
         int portIndex = url.indexOf(":", url.indexOf("://") + 3);
@@ -54,17 +52,18 @@ public class UrlManager {
         }
 
         int portEndIndex = url.indexOf("/", portIndex);
-        return Integer.valueOf(url.substring(portIndex + 1, (portEndIndex < 0 ? portIndex + 1 : portEndIndex)));
+        return Integer.valueOf(url.substring(portIndex + 1, (portEndIndex < 0 ? url.length() : portEndIndex)));
 
     }
 
     public String getHostFromURL(String url) {
         if (!parameterIsValid(url)) {
-            throw new IllegalArgumentException("Invalid parameter");
+            throw new IllegalArgumentException("Invalid url");
         }
 
-        int hostIndex = url.indexOf(url.indexOf("://") + 3);
-        int hostEndIndex = url.indexOf("/", hostIndex);
+        int hostIndex = url.indexOf("://") + 3;
+        int hostEndIndex = url.indexOf(":", hostIndex);
+        hostEndIndex = hostEndIndex < 0 ? url.indexOf("/", hostIndex) : hostEndIndex;
 
         String host = null;
         if (hostEndIndex < 0) {
@@ -74,7 +73,7 @@ public class UrlManager {
         }
 
         if (!parameterIsValid(host)) {
-            throw new IllegalArgumentException("Invalid parameter");
+            throw new IllegalArgumentException("Invalid url");
         }
 
         return host.toLowerCase();
@@ -82,10 +81,10 @@ public class UrlManager {
 
     public String getPathFromURL(String url) {
         if (!parameterIsValid(url)) {
-            throw new IllegalArgumentException("Invalid parameter");
+            throw new IllegalArgumentException("Invalid url");
         }
 
-        int pathStartIndex = url.indexOf(url.indexOf("://") + 3);
+        int pathStartIndex = url.indexOf("://") + 3;
         pathStartIndex = url.indexOf("/", pathStartIndex);
 
         if (pathStartIndex < 0) {
@@ -103,7 +102,7 @@ public class UrlManager {
 
     public String getQueryFromURL(String url) {
         if (!parameterIsValid(url)) {
-            throw new IllegalArgumentException("Invalid parameter");
+            throw new IllegalArgumentException("Invalid url");
         }
 
         String query = "";
@@ -114,7 +113,7 @@ public class UrlManager {
         return query;
     }
 
-       public String getProtocol() {
+    public String getProtocol() {
         return protocol;
     }
 
@@ -135,7 +134,7 @@ public class UrlManager {
             throw new IllegalArgumentException("Invalid parameter");
         }
 
-        return query.length() > 0;
+        return getProperty(key) != null;
     }
 
     public String getProperty(String key) {
@@ -145,11 +144,9 @@ public class UrlManager {
 
         String[] properties = query.split("&");
         for (int i = 0; i < properties.length; i++) {
-            String[] keyValuesPairs = query.split("=");
-            if (keyValuesPairs.length > 1) {
-                if (keyValuesPairs[0].equalsIgnoreCase(key)) {
-                    return keyValuesPairs[1];
-                }
+            String[] keyValuesPairs = properties[i].split("=");
+            if (keyValuesPairs.length > 1 && keyValuesPairs[0].equalsIgnoreCase(key)) {
+                return keyValuesPairs[1];
             }
         }
         return null;

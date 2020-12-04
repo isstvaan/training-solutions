@@ -9,14 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatrixReader {
-    List<byte[]> matrix = new ArrayList<>();
+    private final List<byte[]> matrix = new ArrayList<>();
 
     public void readBytesAndCreateMatrix(String filepath) {
         if (filepath == null || filepath.isBlank()) {
             throw new IllegalArgumentException("File path can't be empty");
         }
 
-        Path path = Path.of(filepath);
+        Path path = Path.of("src/main/resources/"+filepath);
         try (InputStream bufferedInputStream = new BufferedInputStream(Files.newInputStream(path))) {
             int readedBytes = 0;
             byte[] buffer = new byte[1000];
@@ -34,8 +34,8 @@ public class MatrixReader {
         int columnsCount = 0;
         for (byte[] item : matrix) {
             int zeros = 0;
-            for (int i = 0; i < item.length; i++) {
-                if (item[i] == '0') {
+            for (byte subItem : item) {
+                if (subItem == '0') {
                     zeros++;
                 }
             }

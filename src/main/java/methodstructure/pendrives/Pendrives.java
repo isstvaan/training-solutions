@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Pendrives {
     public Pendrive best(List<Pendrive> pendrives) {
-        if (pendrives == null || pendrives.size() == 0) {
+        if (isEmpty(pendrives)) {
             throw new IllegalArgumentException("List can't be empty.");
         }
 
@@ -17,7 +17,6 @@ public class Pendrives {
             int compareResult = pendrive.comparePricePerCapacity(pendrives.get(i));
             if (compareResult > 0) {
                 pendrive = pendrives.get(i);
-                i = 0;
             }
         }
 
@@ -25,7 +24,7 @@ public class Pendrives {
     }
 
     public Pendrive cheapest(List<Pendrive> pendrives) {
-        if (pendrives == null || pendrives.size() == 0) {
+        if (isEmpty(pendrives)) {
             throw new IllegalArgumentException("List can't be empty.");
         }
 
@@ -35,9 +34,8 @@ public class Pendrives {
 
         Pendrive pendrive = pendrives.get(0);
         for (int i = 1; i < pendrives.size(); i++) {
-            if (pendrive.cheaperThan(pendrives.get(i))) {
+            if (pendrives.get(i).cheaperThan(pendrive)) {
                 pendrive = pendrives.get(i);
-                i = 0;
             }
         }
 
@@ -50,5 +48,9 @@ public class Pendrives {
                 item.risePrice(percent);
             }
         }
+    }
+
+    private boolean isEmpty(List<Pendrive> pendrives) {
+        return pendrives == null || pendrives.isEmpty();
     }
 }

@@ -20,12 +20,12 @@ public class ResultCalculator {
 
         try (BufferedReader bufferedReader = Files.newBufferedReader(talentsFile)) {
             String line;
-            while ((line = bufferedReader.readLine()) == null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 productions.add(getProductionFromSting(line));
                 votes.add(new Vote(productions.get(productions.size() - 1).getId(), 0));
             }
         } catch (IOException ex) {
-            throw new IllegalStateException("Can't read file.");
+            throw new IllegalStateException("Can't read file.", ex);
         }
     }
 
@@ -49,7 +49,7 @@ public class ResultCalculator {
         try (BufferedReader bufferedReader = Files.newBufferedReader(votesFile)) {
 
             String line;
-            while ((line = bufferedReader.readLine()) == null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 Vote vote = getVoteFromString(line);
                 if (vote != null) {
                     vote.incNum();
@@ -82,7 +82,7 @@ public class ResultCalculator {
         if (resultFile == null) {
             throw new IllegalArgumentException("Talents can't be null");
         }
-        if (productions.size() == 0) {
+        if (productions.isEmpty()) {
             throw new IllegalStateException("Productions not setted");
         }
 
@@ -91,10 +91,12 @@ public class ResultCalculator {
             int maxVote = 0;
             for (Production item : productions) {
                 Vote productVote = getVoteFromString(String.valueOf(item.getId()));
-                printWriter.println(item + " " + productVote.getNumber());
-                if (maxVote < productVote.getNumber()) {
-                    maxVote = productVote.getNumber();
-                    winner = item;
+                if (productVote != null) {
+                    printWriter.println(item + " " + productVote.getNumber());
+                    if (maxVote < productVote.getNumber()) {
+                        maxVote = productVote.getNumber();
+                        winner = item;
+                    }
                 }
             }
             printWriter.println("Winner: " + winner.getName());

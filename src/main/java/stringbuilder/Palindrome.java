@@ -6,6 +6,7 @@ public class Palindrome {
             throw new IllegalArgumentException("Invalid parameter");
         }
 
+        string=string.trim();
         StringBuilder stringBuilder = new StringBuilder(string);
         return string.equalsIgnoreCase(stringBuilder.reverse().toString());
     }

@@ -18,12 +18,12 @@ public class CountryStatistics {
             throw new IllegalStateException("Path can't be null or empty");
         }
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(CountryStatistics.class.getResourceAsStream("/" + pathStr)))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(CountryStatistics.class.getResourceAsStream(pathStr)))) {
 
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] splittedStr = line.split(" ");
-                countries.add(new Country(splittedStr[0], Integer.getInteger(splittedStr[1])));
+                countries.add(new Country(splittedStr[0], Integer.parseInt(splittedStr[1])));
             }
 
         } catch (IOException e) {
@@ -36,7 +36,7 @@ public class CountryStatistics {
     }
 
     public Country mostBorderCountries() {
-        if (countries.size() == 0) {
+        if (countries.isEmpty()) {
             throw new IllegalStateException("Countries list is empty");
         }
 

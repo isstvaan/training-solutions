@@ -1,13 +1,13 @@
 package stringbuilder;
 
-public class NameCreator {
+public class NameBuilder {
 
     public String concatNameWesternStyle(String familyName, String middleName, String givenName, Title title) {
         if (isEmpty(familyName) || isEmpty(givenName)) {
             throw new IllegalArgumentException("Invalid parameter! Firt name and given name can't be empty.");
         }
 
-        StringBuilder nameBulder = new StringBuilder("");
+        StringBuilder nameBulder = new StringBuilder();
 
         if (title != null) {
             nameBulder.append(title.getStringValue()).append(" ").append(givenName).append(" ");
@@ -24,10 +24,10 @@ public class NameCreator {
 
     public String concatNameHungarianStyle(String familyName, String middleName, String givenName, Title title) {
         if (isEmpty(familyName) || isEmpty(givenName)) {
-            throw new IllegalArgumentException("Invalid parameter! Firt name and given name can't be empty.");
+            throw new IllegalArgumentException("Family name and given name must not be empty!");
         }
 
-        StringBuilder nameBulder = new StringBuilder("");
+        StringBuilder nameBulder = new StringBuilder();
 
         if (title != null) {
             nameBulder.append(title.getStringValue()).append(" ").append(familyName).append(" ");
@@ -67,7 +67,7 @@ public class NameCreator {
         StringBuilder nameBuilder = new StringBuilder(name);
         int deleteIndex = nameBuilder.indexOf(delete);
 
-        return nameBuilder.delete(deleteIndex, deleteIndex + name.length()).toString();
+        return nameBuilder.delete(deleteIndex, deleteIndex + delete.length()).toString();
     }
 
 

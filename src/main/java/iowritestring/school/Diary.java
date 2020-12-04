@@ -7,12 +7,11 @@ import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 public class Diary {
-    private Path filePath ;
+    private Path filePath;
 
     public Diary(String filePath) {
 
-        if (filePath == null|| filePath .isBlank())
-        {
+        if (filePath == null || filePath.isBlank()) {
             throw new IllegalStateException("Filepath can't be empty.");
         }
         this.filePath = Path.of(filePath);
@@ -40,7 +39,7 @@ public class Diary {
             for (String line : lines) {
                 gradesSum += getGrade(line);
             }
-            Files.writeString(filePath, (double) gradesSum / lines.size() + "\n", StandardOpenOption.APPEND);
+            Files.writeString(filePath, "average: " + (double) gradesSum / lines.size() + "\n", StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new IllegalStateException(filePath.toString() + "File not found.");
         }

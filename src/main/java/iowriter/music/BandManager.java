@@ -37,7 +37,7 @@ public class BandManager {
         if (splittedStr.length < 2) {
             throw new IllegalStateException("Invalis string format.");
         }
-        return new Band(splittedStr[0], Integer.parseInt(splittedStr[2]));
+        return new Band(splittedStr[0], Integer.parseInt(splittedStr[1]));
     }
 
     public void writeBandsBefore(Path outputFile, int year) {

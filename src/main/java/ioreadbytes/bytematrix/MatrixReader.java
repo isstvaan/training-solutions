@@ -16,7 +16,7 @@ public class MatrixReader {
             throw new IllegalArgumentException("File path can't be empty");
         }
 
-        Path path = Path.of("src/main/resources/"+filepath);
+        Path path = Path.of("src/main/resources/" + filepath);
         try (InputStream bufferedInputStream = new BufferedInputStream(Files.newInputStream(path))) {
             int readedBytes = 0;
             byte[] buffer = new byte[1000];
@@ -32,14 +32,18 @@ public class MatrixReader {
 
     public int numberOfColumnsWhereMoreZeros() {
         int columnsCount = 0;
-        for (byte[] item : matrix) {
+        for (int i = 0; i < 1000; i++) {
             int zeros = 0;
-            for (byte subItem : item) {
-                if (subItem == '0') {
+            int ones = 0;
+
+            for (byte[] bytes : matrix) {
+                if (bytes[i] == 48) {
                     zeros++;
+                } else {
+                    ones++;
                 }
             }
-            if (zeros > item.length / 2.0) {
+            if (zeros > ones) {
                 columnsCount++;
             }
         }

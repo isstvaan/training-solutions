@@ -2,8 +2,7 @@ package week08d04;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +11,7 @@ public class ExamplesStore {
 
     public static List<String> getTitlesOfExamples() {
         List<String> titles = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(Files.newBufferedReader(Path.of(FILE_NAME)))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(ExamplesStore.class.getResourceAsStream(FILE_NAME)))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("#")) {
@@ -20,7 +19,7 @@ public class ExamplesStore {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalStateException("File read error.",e);
         }
         return titles;
     }

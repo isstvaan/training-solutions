@@ -14,6 +14,8 @@ public class Person {
 
     public void setPresent() {
         if (age < 15) {
+            present = Present.values()[new Random().nextInt(Present.values().length - 1) + 1];
+        } else {
             present = Present.values()[new Random().nextInt(Present.values().length)];
         }
     }

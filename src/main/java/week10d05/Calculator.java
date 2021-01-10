@@ -18,9 +18,9 @@ public class Calculator {
 
         int min = 0;
         int max = 0;
-        for (int i = 0; i < Math.min(MAX_SUMM_NUMBER, arr.length); i++) {
-            min += arr[i];
-            max += arr[arr.length - 1 - i];
+        for (int i = 0; i < Math.min(MAX_SUMM_NUMBER, tmp.length); i++) {
+            min += tmp[i];
+            max += tmp[arr.length - 1 - i];
         }
         System.out.printf("A legkissebbek összege: %d%nA legnagyobbak összege: %d", min, max);
     }

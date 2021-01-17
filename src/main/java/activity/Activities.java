@@ -16,8 +16,12 @@ public class Activities {
 
     public List<Report> distancesByTypes() {
         List<Report> reports = new ArrayList<>();
+        for (ActivityType item : ActivityType.values()) {
+            reports.add(new Report(item, 0));
+        }
+
         for (Activity item : activites) {
-            reports.add(new Report(item.getType(), item.getDistance()));
+            reports.set(item.getType().ordinal(), new Report(item.getType(), reports.get(item.getType().ordinal()).getDistance() + item.getDistance()));
         }
         return reports;
     }

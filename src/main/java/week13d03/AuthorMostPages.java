@@ -19,7 +19,14 @@ public class AuthorMostPages {
 
     private Map<String, Integer> getAuthorPagesMap(List<Book> books) {
         Map<String, Integer> retVal = new TreeMap<>();
+
         for (Book item : books) {
+//            retVal.merge(
+//                    item.getAuthor()
+//                    , item.getNumberOfPages()
+//                    , (x, y) -> x + y
+//            );
+
             if (!retVal.containsKey(item.getAuthor())) {
                 retVal.put(item.getAuthor(), item.getNumberOfPages());
             }

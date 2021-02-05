@@ -1,4 +1,4 @@
-package methodoverloading.time;
+package methoverloading.time;
 
 import org.junit.jupiter.api.Test;
 

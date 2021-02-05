@@ -1,4 +1,4 @@
-package methodoverloading.time;
+package methoverloading.time;
 
 public class Time {
     private int hours;

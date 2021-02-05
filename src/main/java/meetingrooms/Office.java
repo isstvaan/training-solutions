@@ -1,4 +1,4 @@
-package week02;
+package meetingrooms;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,70 +11,70 @@ public class Office {
     }
 
     public void printNames() {
-        String names = "Tárgyalók: ";
+        StringBuilder names = new StringBuilder("Tárgyalók: ");
 
         for (MeetingRoom item : meetingRooms) {
-            names += item.getName() + "; ";
+            names.append(item.getName()).append("; ");
         }
         System.out.println(names);
     }
 
     public void printNamesReverse() {
-        String names = "Tárgyalók fordított sorrendben: ";
+        StringBuilder names = new StringBuilder("Tárgyalók fordított sorrendben: ");
 
         for (int i = meetingRooms.size() - 1; i >= 0; i--) {
-            names += meetingRooms.get(i).getName() + "; ";
+            names.append(meetingRooms.get(i).getName()).append("; ");
         }
 
         System.out.println(names);
     }
 
     public void printEventNames() {
-        String names = "Minden második tárgyaló: ";
+        StringBuilder names = new StringBuilder("Minden második tárgyaló: ");
 
         for (int i = 0; i < meetingRooms.size(); i++) {
             if (i % 2 != 0) {
-                names += meetingRooms.get(i).getName() + "; ";
+                names.append(meetingRooms.get(i).getName()).append("; ");
             }
         }
         System.out.println(names);
     }
 
     public void printAreas() {
-        String areas = "Tárgyalók területei:\n";
+        StringBuilder areas = new StringBuilder("Tárgyalók területei:\n");
 
         for (MeetingRoom item : meetingRooms) {
-            areas += item.toString() + "\n";
+            areas.append(item.toString()).append("\n");
         }
 
         System.out.println(areas);
     }
 
     public void printMeetingRoomsWithName(String name) {
-        String rooms = "";
+        StringBuilder rooms = new StringBuilder();
         for (MeetingRoom item : meetingRooms) {
             if (item.getName().equals(name)) {
-                rooms += item.toString() + "\n";
+                rooms.append(item.toString()).append("\n");
             }
         }
         System.out.println(rooms);
     }
 
     public void printMeetingRoomsContaint(String part) {
-        String rooms = "";
+        StringBuilder rooms = new StringBuilder();
         for (MeetingRoom item : meetingRooms) {
             if (item.getName().toLowerCase().contains(part.toLowerCase())) {
-                rooms += item.toString() + "\n";
+                rooms.append(item.toString()).append("\n");
             }
         }
         System.out.println(rooms);
     }
 
     public void printAreasLargerThan(int area) {
-        String areas = "";
+        StringBuilder areas = new StringBuilder();
         for (MeetingRoom item : meetingRooms) {
             if (item.getArea() > area) {
-                areas += item.toString() + "\n";
+                areas.append(item.toString()).append("\n");
             }
         }
         System.out.println(areas);

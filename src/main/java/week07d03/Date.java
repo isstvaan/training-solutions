@@ -21,12 +21,12 @@ public class Date {
             throw new IllegalArgumentException("wrong month");
         }
         if (leapYear(year)) {
-            if (day < 1 || day > DAYS_OF_MONTH_LEAP_YEAR[month]) {
+            if (day < 1 || day > DAYS_OF_MONTH_LEAP_YEAR[month - 1]) {
                 throw new IllegalArgumentException("wrong day");
             }
 
         } else {
-            if (day < 1 || day > DAYS_OF_MONTH[month]) {
+            if (day < 1 || day > DAYS_OF_MONTH[month - 1]) {
                 throw new IllegalArgumentException("wrong day");
             }
         }

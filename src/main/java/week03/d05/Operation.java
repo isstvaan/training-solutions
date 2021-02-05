@@ -1,4 +1,4 @@
-package week03;
+package week03.d05;
 
 public class Operation {
     private int leftValue;

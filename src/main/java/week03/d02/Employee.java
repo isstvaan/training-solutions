@@ -1,7 +1,4 @@
-package week03;
-
-import java.util.Arrays;
-import java.util.List;
+package week03.d02;
 
 public class Employee {
     private Position position;

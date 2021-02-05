@@ -1,4 +1,4 @@
-package week03;
+package week03.d04;
 
 public class Phone {
     private String prefix;

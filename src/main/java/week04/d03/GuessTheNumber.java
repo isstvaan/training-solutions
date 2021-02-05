@@ -1,9 +1,9 @@
-package week04;
+package week04.d03;
 
 import java.util.Random;
 import java.util.Scanner;
 
-public class NumberGuesser {
+public class GuessTheNumber {
     private static final int ROUNDS = 7;
 
     public static void main(String[] args) {

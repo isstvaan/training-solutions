@@ -1,12 +1,12 @@
-package week04;
+package week04.d02;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CharOperations {
+public class Search {
 
     public static void main(String[] args) {
-        System.out.println(new CharOperations().getIndexesOfChar("alma",'a').toString());
+        System.out.println(new Search().getIndexesOfChar("alma",'a').toString());
     }
 
     public List<Integer> getIndexesOfChar(String str, char chr) {

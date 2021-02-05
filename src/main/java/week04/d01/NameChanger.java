@@ -1,4 +1,4 @@
-package week04;
+package week04.d01;
 
 public class NameChanger {
     private String fullName;

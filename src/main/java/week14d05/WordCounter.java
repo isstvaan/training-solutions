@@ -10,12 +10,12 @@ import java.util.stream.Stream;
 public class WordCounter {
 
     public long countName(String name, String filePath) {
-        try {
-            return Files.lines(Path.of(filePath), StandardCharsets.UTF_8)
-                    .filter(o -> o.toUpperCase().contains(name.toUpperCase()))
-                    .flatMap(WordCounter::lineToword)
-                    .filter(o -> o.toUpperCase().contains(name.toUpperCase()))
-                    .count();
+        try (Stream<String> fileLines = Files.lines(Path.of(filePath), StandardCharsets.UTF_8)) {
+            return
+                    fileLines.filter(o -> o.toUpperCase().contains(name.toUpperCase()))
+                            .flatMap(WordCounter::lineToword)
+                            .filter(o -> o.toUpperCase().contains(name.toUpperCase()))
+                            .count();
         } catch (IOException e) {
             throw new IllegalStateException("File read error", e);
         }

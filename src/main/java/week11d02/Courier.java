@@ -1,8 +1,6 @@
 package week11d02;
 
 
-import collectionsclass.CollectionManager;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

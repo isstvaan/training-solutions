@@ -8,11 +8,10 @@ import java.nio.file.Path;
 public class Histogram {
     public static final String FILL_CHAR = "*";
 
-    public String getHistogramFromFile(String fileName) {
+    public String createHistogram(BufferedReader reader) {
         StringBuilder builder = new StringBuilder();
 
-        try {
-            BufferedReader reader = Files.newBufferedReader(Path.of(fileName));
+        try(reader) {
             String line;
             while ((line = reader.readLine()) != null) {
                 int repeatNumber = Integer.parseInt(line);
@@ -26,7 +25,7 @@ public class Histogram {
         return builder.toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println( new Histogram().getHistogramFromFile("exam2test.txt"));
+    public static void main(String[] args) throws IOException {
+        System.out.println( new Histogram().createHistogram(Files.newBufferedReader(Path.of("exam2test.txt"))));
     }
 }

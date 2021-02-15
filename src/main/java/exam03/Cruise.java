@@ -78,4 +78,16 @@ public class Cruise {
 
         return passengersByClass;
     }
+
+    public Map<Object, Long> countPassengerByClass1() {
+        return getPassengers().stream().map(Passenger::getCruiseClass).collect(Collectors.groupingBy(m -> m, Collectors.counting()));
+    }
+
+    public static void main(String[] args) {
+        Cruise cruise = new Cruise(new Boat("WetDreams", 5), LocalDate.of(2021, 1, 1), 100_000);
+        cruise.bookPassenger(new Passenger("Jack Smith", CruiseClass.LUXURY));
+        cruise.bookPassenger(new Passenger("John Doe", CruiseClass.LUXURY));
+        cruise.bookPassenger(new Passenger("Jack Doe", CruiseClass.FIRST));
+        System.out.println(cruise.countPassengerByClass1());
+    }
 }

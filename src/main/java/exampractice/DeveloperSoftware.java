@@ -7,6 +7,6 @@ public class DeveloperSoftware extends Software {
 
     @Override
     public void increasePrice() {
-        price *= 0.1;
+        price *= 1.1;
     }
 }

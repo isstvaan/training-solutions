@@ -7,6 +7,6 @@ public class OfficeSoftware extends Software {
 
     @Override
     public void increasePrice() {
-        price *= 0.05;
+        price *= 1.05;
     }
 }
